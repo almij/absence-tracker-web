@@ -8,6 +8,8 @@ namespace AbsenceTrackerLibrary.Models
         public AbsenceTypeModel AbsenceType { get; set; }
         public DateTime EffectiveFrom { get; set; } = DateTime.Now.Date;
         public int WorkHoursTotal { get; set; } = 8;
+        public int WorkDaysTotal => WorkHoursTotal / 8;
+        public bool IsSingleWorkDay => WorkHoursTotal <= 8;
 
         public int CompareTo(AbsenceModel other)
         {

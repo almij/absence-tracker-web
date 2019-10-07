@@ -7,6 +7,7 @@ namespace AbsenceTrackerLibrary.DataAccess
     {
         void SavePerson(PersonModel personModel);
         void SaveAbsence(AbsenceModel absenceModel, int personId);
+        List<AbsenceModel> GetAbsences(int person_id);
         PersonModel GetPerson(string aspNetUserId);
         void DeleteAbsence(AbsenceModel absence);
         AbsenceTypeModel GetAbsenceType(int id);

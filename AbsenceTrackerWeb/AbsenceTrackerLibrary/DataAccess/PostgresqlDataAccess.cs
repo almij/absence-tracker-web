@@ -74,7 +74,7 @@ namespace AbsenceTrackerLibrary.DataAccess
             using (IDbConnection connection = ConnectionFactory())
             {
                 var personMappers = connection.Query<PersonMapper>(
-                    $"select * from public.person where username = '{aspNetUserId}'").ToList();
+                    $"select * from public.person where aspnetuser_id = '{aspNetUserId}'").ToList();
                 if (personMappers.Count == 0)
                 {
                     return null;
@@ -90,7 +90,7 @@ namespace AbsenceTrackerLibrary.DataAccess
             }
         }
 
-        private List<AbsenceModel> GetAbsences(int personId)
+        public List<AbsenceModel> GetAbsences(int personId)
         {
             using (IDbConnection connection = ConnectionFactory())
             {
@@ -137,7 +137,6 @@ namespace AbsenceTrackerLibrary.DataAccess
             using (IDbConnection connection = ConnectionFactory())
             {
                 var param = new DynamicParameters();
-                param.Add($"{ParamChar}username", personModel.AspNetUserId);
                 param.Add($"{ParamChar}first_name", personModel.FirstName);
                 param.Add($"{ParamChar}last_name", personModel.LastName);
                 if (personModel.Id == -1)

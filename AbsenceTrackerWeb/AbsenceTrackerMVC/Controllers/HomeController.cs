@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AbsenceTrackerLibrary;
+using AbsenceTrackerMVC.Helpers;
+using AbsenceTrackerMVC.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using AbsenceTrackerMVC.Models;
 
 namespace AbsenceTrackerMVC.Controllers
 {
@@ -12,14 +12,49 @@ namespace AbsenceTrackerMVC.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("PersonalData");
         }
 
+        [Authorize]
+        public IActionResult Absences()
+        {
+            var personDB = AbsenceTracker.GetPerson(User.Id());
+            var absencesDB = AbsenceTracker.GetAbsences(personDB.Id);
+            var absences = absencesDB.Select(_ => new AbsenceModel()
+            {
+                AbsenceType = _.AbsenceType.ToString(),
+                EffectiveFrom = _.EffectiveFrom,
+                WorkDaysTotal = _.WorkDaysTotal,
+                IsSingleDay = _.IsSingleWorkDay,
+                WorkHoursTotal = _.WorkHoursTotal
+            }).ToList();
+
+            return View(absences);
+        }
+
+        [Authorize]
         public IActionResult PersonalData()
         {
             ViewData["Message"] = "Personal Data";
+            var personDB = AbsenceTracker.GetPerson(User.Id());
+            var person = new PersonModel
+            {
+                EmailAddress = User.Name(),
+                FirstName = personDB?.FirstName,
+                LastName = personDB?.LastName
+            };
+            return View(person);
+        }
 
-            return View();
+        [HttpPost]
+        public IActionResult PersonalData(PersonModel person)
+        {
+            var personDB = AbsenceTracker.GetPerson(User.Id());
+            personDB.FirstName = person.FirstName;
+            personDB.LastName = person.LastName;
+            AbsenceTracker.SaveUserData(personDB);
+
+            return RedirectToAction("PersonalData");
         }
 
         public IActionResult About()
