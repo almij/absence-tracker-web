@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29230.47
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbsenceTrackerMVC", "AbsenceTrackerMVC\AbsenceTrackerMVC.csproj", "{0979051B-9565-46B7-BDEA-332B48A133F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbsenceTrackerMVC", "AbsenceTrackerMVC\AbsenceTrackerMVC.csproj", "{0979051B-9565-46B7-BDEA-332B48A133F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbsenceTrackerLibrary", "AbsenceTrackerLibrary\AbsenceTrackerLibrary.csproj", "{20C86E9B-355E-4B8A-8858-D431D6613C7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{0979051B-9565-46B7-BDEA-332B48A133F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0979051B-9565-46B7-BDEA-332B48A133F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0979051B-9565-46B7-BDEA-332B48A133F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20C86E9B-355E-4B8A-8858-D431D6613C7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20C86E9B-355E-4B8A-8858-D431D6613C7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20C86E9B-355E-4B8A-8858-D431D6613C7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20C86E9B-355E-4B8A-8858-D431D6613C7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

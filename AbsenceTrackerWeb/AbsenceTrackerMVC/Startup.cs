@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using AbsenceTrackerMVC.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using AbsenceTrackerLibrary.Helpers;
 
 namespace AbsenceTrackerMVC
 {
@@ -34,13 +35,7 @@ namespace AbsenceTrackerMVC
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            var dbUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
-            bool isUrl = Uri.TryCreate(dbUrl, UriKind.Absolute, out Uri url);
-            if (!isUrl)
-            {
-                throw new UriFormatException("DATABASE_URL environment variable is invalid");
-            }
-            var connectionString = $"host={url.Host};username={url.UserInfo.Split(':')[0]};password={url.UserInfo.Split(':')[1]};database={url.LocalPath.Substring(1)};pooling=true;SSL Mode=Require;TrustServerCertificate=True;";
+            var connectionString = ConnectionStringsHelper.GetEnvironmentConnectionString();
             services.AddEntityFrameworkNpgsql()
                 .AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
 

@@ -1,8 +1,8 @@
--- DROP TABLE public.team_personnel;
--- DROP TABLE public.team;
--- DROP TABLE public.absence;
--- DROP TABLE public.person;
--- DROP TABLE public.absence_type;
+DROP TABLE public.team_personnel;
+DROP TABLE public.team;
+DROP TABLE public.absence;
+DROP TABLE public.person;
+DROP TABLE public.absence_type;
 
 CREATE TABLE public.person
 (
@@ -20,9 +20,7 @@ CREATE TABLE public.absence
     absence_type_id INT NOT NULL,
     person_id INT NOT NULL,
     effective_from DATE NOT NULL,
-    days_total INT NOT NULL,
-    hours_total INT,
-    days_worked_on_holidays INT CONSTRAINT default_absence_days_worked_on_holidays_zero DEFAULT 0,
+    work_hours_total INT,
 	
     CONSTRAINT pk_absence_id PRIMARY KEY (absence_id)
 );
@@ -56,7 +54,7 @@ CREATE TABLE public.team_personnel
 
 
 ALTER TABLE public.person ADD
-    CONSTRAINT fk_person_aspnetuser FOREIGN KEY (aspnetuser_id) REFERENCES public.AspNetUsers(Id);
+    CONSTRAINT fk_person_aspnetuser FOREIGN KEY (aspnetuser_id) REFERENCES public."AspNetUsers"("Id");
 
 ALTER TABLE public.absence ADD
     CONSTRAINT fk_absense_absence_type FOREIGN KEY (absence_type_id) REFERENCES public.absence_type(absence_type_id);

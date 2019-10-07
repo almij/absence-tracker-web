@@ -15,6 +15,13 @@ namespace AbsenceTrackerMVC.Controllers
             return View();
         }
 
+        public IActionResult PersonalData()
+        {
+            ViewData["Message"] = "Personal Data";
+
+            return View();
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
