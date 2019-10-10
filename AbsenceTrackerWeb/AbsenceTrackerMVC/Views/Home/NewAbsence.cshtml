@@ -1,0 +1,58 @@
+﻿@model AbsenceTrackerMVC.Models.AbsenceModel
+
+@{
+    ViewData["Title"] = "NewAbsence";
+}
+
+<h2>NewAbsence</h2>
+
+<h4>AbsenceModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="NewAbsence">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AbsenceType" class="control-label"></label>
+                <input asp-for="AbsenceType" class="form-control" />
+                <span asp-validation-for="AbsenceType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EffectiveFrom" class="control-label"></label>
+                <input asp-for="EffectiveFrom" class="form-control" />
+                <span asp-validation-for="EffectiveFrom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkDaysTotal" class="control-label"></label>
+                <input asp-for="WorkDaysTotal" class="form-control" />
+                <span asp-validation-for="WorkDaysTotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsSingleDay" /> @Html.DisplayNameFor(model => model.IsSingleDay)
+                    </label>
+                </div>
+            </div>
+            @if (Model.IsSingleDay)
+            {
+            <div class="form-group">
+                <label asp-for="WorkHoursTotal" class="control-label"></label>
+                <input asp-for="WorkHoursTotal" class="form-control" />
+                <span asp-validation-for="WorkHoursTotal" class="text-danger"></span>
+            </div>
+            }
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

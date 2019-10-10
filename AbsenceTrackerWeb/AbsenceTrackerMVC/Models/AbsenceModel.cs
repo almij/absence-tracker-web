@@ -13,15 +13,15 @@ namespace AbsenceTrackerMVC.Models
         public string AbsenceType { get; set; }
 
         [Display(Name = "Effective from")]
-        public DateTime EffectiveFrom { get; set; }
+        public DateTime EffectiveFrom { get; set; } = DateTime.Now.Date;
 
         [Display(Name = "Total work days")]
-        public int WorkDaysTotal { get; set; }
+        public int WorkDaysTotal { get; set; } = 0;
 
         [Display(Name = "Single work day?")]
-        public bool IsSingleDay { get; set; }
+        public bool IsSingleDay { get; set; } = false;
 
         [Display(Name = "Total work hours")]
-        public int WorkHoursTotal { get; set; }
+        public int WorkHoursTotal { get; set; } = 0;
     }
 }

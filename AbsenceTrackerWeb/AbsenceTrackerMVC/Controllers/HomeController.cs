@@ -3,6 +3,7 @@ using AbsenceTrackerMVC.Helpers;
 using AbsenceTrackerMVC.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Diagnostics;
 using System.Linq;
 
@@ -30,6 +31,11 @@ namespace AbsenceTrackerMVC.Controllers
             }).ToList();
 
             return View(absences);
+        }
+
+        public IActionResult NewAbsence()
+        {
+            return View(new AbsenceModel());
         }
 
         [Authorize]

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<AbsenceTrackerMVC.Models.AbsenceModel>
+
+@{
+    ViewData["Title"] = "Absences";
+}
+
+<h2>Absences</h2>
+
+<p>
+    <a asp-action="Create">Add New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AbsenceType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EffectiveFrom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkDaysTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsSingleDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkHoursTotal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AbsenceType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EffectiveFrom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkDaysTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsSingleDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkHoursTotal)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Remove", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
