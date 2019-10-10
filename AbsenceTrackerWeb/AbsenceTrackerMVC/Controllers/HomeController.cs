@@ -38,6 +38,19 @@ namespace AbsenceTrackerMVC.Controllers
             return View(new AbsenceModel());
         }
 
+        [HttpPost]
+        public IActionResult NewAbsence(AbsenceModel absence)
+        {
+            var absenceDB = new AbsenceTrackerLibrary.Models.AbsenceModel()
+            {
+                WorkHoursTotal = absence.IsSingleDay ? absence.WorkHoursTotal : absence.WorkDaysTotal * 8,
+                EffectiveFrom = absence.EffectiveFrom
+            };
+            AbsenceTracker.SaveAbsence(absenceDB, AbsenceTracker.GetPerson(User.Id()).Id);
+
+            return RedirectToAction("Absences");
+        }
+
         [Authorize]
         public IActionResult PersonalData()
         {
